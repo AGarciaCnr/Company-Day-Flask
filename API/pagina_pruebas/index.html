@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="jquery.cookie.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="h1_name">No has iniciado sesión</h1>
+
+    <button id="btn_logout">Cerrar sesión</button>
+
+    <hr>
+
+    <h2 id="login">Iniciar sesión</h2>
+    <br>
+    <input id="login_email" type="email" name="email" placeholder="email">
+    <br>
+    <input id="login_password" type="password" name="password" placeholder="Contraseña">
+    <br>
+    <button id="btn_login">Iniciar sesión</button>
+
+    <div id="login_div"></div>
+
+    <hr>
+
+    <h2 id="register">Registro</h2>
+    <br>
+    <input id="nombre_completo" type="text" name="nombre_completo" placeholder="Nombre completo">
+    <br>
+    <input id="email" type="email" name="email" placeholder="Email">
+    <br>
+    <input id="password" type="password" name="password" placeholder="Contraseña">
+    <br>
+    <input id="matriculacion" type="text" name="matriculacion" placeholder="Matriculación">
+    <br>
+    <button id="btn_registro">Registrarme</button>
+
+    <div id="register_div"></div>
+
+    <hr>
+
+    <h2 id="Crear evento">Crear evento</h2>
+
+
+    <label for "deporte">Elige el deporte </label>
+    <select id="deporte" name="deporte">
+        <option value="1">Fútbol</option>
+        <option value="1">Baloncesto</option>
+        <option value="2">Tenis</option>
+    </select>
+    <br>
+    <label>Número de jugadores máximos</label>
+    <input id ="max_participantes" type="number">
+    <br>
+    <input id="nombre_evento" type="text" name="nombre_evento" placeholder="Nombre del evento">
+    <br>
+    <input id="descripcion_evento" type="text" name="descripcion_evento" placeholder="Descripción del evento">
+    <br>
+    <label>Fecha inicio</label>
+    <input id="fecha_inicio" type="date" name="fecha_inicio" placeholder="Fecha inico">
+    <br>
+    <label>Fecha fin</label>
+    <input id="fecha_fin" type="date" name="fecha_fin" placeholder="Fecha final">
+    <br>
+    <label>Hora inicio</label>
+    <input id="hora_inicio" type="time" name="hora_inicio" placeholder="Hora inicio" value="23:30">
+    <br>
+    <label>Hora fin</label>
+    <input id="hora_fin" type="time" name="hora_fin" placeholder="Hora final">
+    <br>
+    <button id="btn_crear_evento">Crear evento</button>
+
+
+    <div id="crear_evento_div"></div>
+
+    <hr>
+
+
+    <h2 id="Ver eventos">Ver eventos</h2>
+    <button id="btn_ver_eventos">Ver eventos</button>
+
+    <div id="eventos_div"></div>
+
+</body>
+
+</html>
