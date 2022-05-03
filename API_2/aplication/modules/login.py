@@ -59,7 +59,8 @@ def getUser(email, password):
         user = query.one()
         if user.isActive == True:
             if verifyPassword(password, user.hash_password):
-                return user
+                data = {'id': user.id, 'email': user.email, 'isAlumn': user.isAlumn, 'isActive': user.isActive}
+                return data 
             else:
                 return None
         else:
