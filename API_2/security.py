@@ -19,9 +19,9 @@ def sendEmailConfirmation(email, token):
     msg = Message('Confirmación de cuenta de Company Day', sender=current_app.config['MAIL_USERNAME'], recipients=[email])
     msg.body = f'''Hola, para confirmar tu cuenta, por favor haz click en el siguiente enlace:'''
     msg.html = f'''<p>Hola, para confirmar tu cuenta, por favor haz click en el siguiente enlace:</p>'''
-    msg.html += f'''<p><a href="{current_app.config['BASE_URL']}/api/registro/confirmar?token={token}">Confirmar cuenta</a></p>'''
+    msg.html += f'''<p><a href="{current_app.config['BASE_URL']}/API_2/uRegister/confirmar?token={token}">Confirmar cuenta</a></p>'''
     msg.html += f'''<p>O copia y pega el siguiente enlace en tu navegador:</p>'''
-    msg.html += f'''<p>{current_app.config['BASE_URL']}/api/registro/confirmar?token={token}</p>'''
+    msg.html += f'''<p>{current_app.config['BASE_URL']}/API_2/uRegister/confirmar?token={token}</p>'''
     msg.html += f'''<p>Si no has solicitado una cuenta, ignora este mensaje.</p>'''
     
     mail.send(msg)

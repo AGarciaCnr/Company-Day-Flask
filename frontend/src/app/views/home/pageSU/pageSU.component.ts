@@ -43,7 +43,7 @@ export class SUComponent implements OnInit {
 
     var result = from( // wrap the fetch in a from if you need an rxjs Observable
       fetch(
-        "http://127.0.0.1:5000/api/login/",
+        "http://127.0.0.1:5000/API_2/login/",
         {
           body: formData,
           headers: requestHeaders,
