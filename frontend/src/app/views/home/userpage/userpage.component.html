@@ -1,9 +1,31 @@
 <div class="div-principal">
     <div *ngIf="isShown" class="row container-fluid"  id="divshow" >
-        Admin
+        <table style="left:35%;" class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">EMAIL CONFIRMED</th>
+                <th scope="col">ADMIN</th>
+                <th scope="col">DELETE</th>
+              </tr>
+            </thead>
+            <ng-container *ngIf="data.length">
+               <tbody *ngFor="let user of data; let i = index">
+                 <tr >
+                   <td>{{user.id}}</td>
+                   <td>{{user.email}}</td>
+                   <td>{{user.isActive}}</td>
+                   <td><input min="0" max="1" id="user.isAlumn" type="number" [(ngModel)]="user.isAlumn"></td>
+                   <td><input (change)="check($event, user.id)" type="checkbox" id="user.id" /></td>
+                   <button (click)="deleteRow(user.id, user.isAlumn)">save</button>
+                 </tr>
+               </tbody>
+             </ng-container>
+           </table>
     </div>
     <div *ngIf="!isShown" class="row container-fluid"  id="divshow" >
         Non Admin
     </div>
-    <button mat-raised-button mat-lg-button color="accent" (click)="logout()">SIGN UP EMPRESA</button>
+     
 </div>
