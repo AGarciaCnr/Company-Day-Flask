@@ -19,6 +19,7 @@ export class UserPageComponent implements OnInit {
   data = [];
   checked = false;
   checkbox_updated = [];
+  token = localStorage.getItem("Token");
 
   constructor(private _formBuilder: FormBuilder, private http: HttpClient, private router: Router) {
     this.user = JSON.parse(localStorage.getItem('User'));
@@ -28,7 +29,7 @@ export class UserPageComponent implements OnInit {
       this.isShown = true;
 
 
-      this.http.get<any>("http://127.0.0.1:5000/API_2/admin/").subscribe(
+      this.http.get<any>("http://127.0.0.1:5000/API_2/admin/?jwt=" + this.token).subscribe(
         (res) => {
           this.data = res.data;
         },

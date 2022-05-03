@@ -28,6 +28,8 @@ export class SUComponent implements OnInit {
   checkbox_admin: boolean;
   myModel: string;
 
+  token: string;
+
   constructor(private _formBuilder: FormBuilder, private http: HttpClient, private router: Router) {
     if (localStorage.getItem("User") !== null) {
       this.router.navigateByUrl('/home/UserPage');
@@ -53,7 +55,9 @@ export class SUComponent implements OnInit {
           console.log(res['message']);
         } else {
           console.log(res['isAlumn'])
+          this.token = res['access_token'];
           localStorage.setItem('User', JSON.stringify(res));
+          localStorage.setItem('Token', this.token);
           this.router.navigateByUrl('/home/UserPage');
         }
         
@@ -82,7 +86,22 @@ export class SUComponent implements OnInit {
       const requestHeaders: HeadersInit = new Headers();
       requestHeaders.set('Content-Type', 'application/json');
 
-      var result = from( // wrap the fetch in a from if you need an rxjs Observable
+      this.http.post<any>("http://127.0.0.1:5000/API_2/uRegister/", formData).subscribe(
+        (res) => {
+          if(res['status'] == "ERROR") {
+            console.log(res['message']);
+          } else {
+            console.log(res)
+//            localStorage.setItem('User', JSON.stringify(res));
+ //           this.router.navigateByUrl('/home/UserPage');
+          }
+          
+  
+        },
+        (err) => console.log(err)
+      );
+  
+/*      var result = from( // wrap the fetch in a from if you need an rxjs Observable
         fetch(
           "http://127.0.0.1:5000/API_2/uRegister/",
           {
@@ -93,7 +112,8 @@ export class SUComponent implements OnInit {
           }
         )
       );
-    }
+    } */
+  }
   }
   
 }
