@@ -20,7 +20,7 @@ class Config:
     MAIL_PORT = 465
     MAIL_USE_TLS = False
     MAIL_USE_SSL = True
-    MAIL_USERNAME = 'app.deportes.utad.2022@gmail.com'
-    MAIL_PASSWORD = 'D3VTD3rbMQCndLS'
+    MAIL_USERNAME = 'companydayutad@gmail.com'
+    MAIL_PASSWORD = 'ticbUs-vucre5-vuvkyb'
     FLASKY_MAIL_SUBJECT_PREFIX = '[Confirmar cuenta]'
     FLASKY_MAIL_SENDER = 'U-TAD'
