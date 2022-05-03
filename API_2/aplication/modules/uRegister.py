@@ -80,7 +80,9 @@ def register(email, password, isAlumn):
         return None
 
 def createUser(email, password, isAlumn):
-    user = User(email=email, hash_password=password, isAlumn=isAlumn)
+    user = User(email=email,
+     hash_password=hashPassword(password)
+     , isAlumn=isAlumn)
     db.session.add(user)
     db.session.commit()
     return user
