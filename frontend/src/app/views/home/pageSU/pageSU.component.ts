@@ -26,7 +26,7 @@ export class SUComponent implements OnInit {
   lname_signup: string;
   passwordconfirmation_signup: string;
   checkbox_admin: boolean;
-
+  myModel: string;
 
   constructor(private _formBuilder: FormBuilder, private http: HttpClient, private router: Router) {
     if (localStorage.getItem("User") !== null) {
