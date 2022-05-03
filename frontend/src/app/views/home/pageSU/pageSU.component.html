@@ -1,0 +1,69 @@
+<div class="div-principal">
+  <mat-card>
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab label="Log In">
+          <mat-card-content>
+            <form #loginForm="ngForm" (ngSubmit)="login()" >
+            <h2 class="align">Log In</h2>
+            <mat-form-field style="left:35%;">
+              <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
+            </mat-form-field>
+            <br />
+            <mat-form-field style="left:35%;">
+              <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+              <mat-error>
+                Please provide a valid password
+              </mat-error>
+            </mat-form-field>
+            <br />
+            <button  style="left:35%;" mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
+          </form>
+        </mat-card-content>
+    </mat-tab>
+    <mat-tab label="Sign Up">
+      <mat-card-content>
+        <form #signupForm="ngForm" (ngSubmit)="signup()" >
+        <h2 class="align">Sign Up</h2>
+        <mat-form-field style="left:35%;">
+          <input matInput placeholder="Username" [(ngModel)]="username_signup" name="username_signup" required>
+        </mat-form-field>
+        <br />
+        <mat-form-field style="left:35%;">
+          <input matInput placeholder="First Name" [(ngModel)]="fname_signup" name="fname_signup" required>
+        </mat-form-field>
+        <br />
+        <mat-form-field style="left:35%;">
+          <input matInput placeholder="Last Name" [(ngModel)]="lname_signup" name="lname_signup" required>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field style="left:35%;">
+          <input matInput placeholder="Email" [(ngModel)]="email_signup" name="email_signup" required>
+          <mat-error>
+            Please provide a valid email address
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field style="left:35%;">
+          <input matInput type="password" placeholder="Password" [(ngModel)]="password_signup" name="password_signup" required>
+          <mat-error>
+            Please provide a valid password
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field style="left:35%;">
+          <input matInput type="password" placeholder="Password Confirmation" [(ngModel)]="passwordconfirmation_signup" name="passwordconfirmation_signup" required>
+          <mat-error>
+            Please provide a valid password
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <button style="left:35%;" mat-raised-button color="primary" [disabled]="!signupForm.form.valid">Login</button>
+      </form>
+    </mat-card-content>
+</mat-tab>
+</mat-tab-group>
+      </mat-card>
+</div>

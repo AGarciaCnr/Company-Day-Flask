@@ -1,0 +1,28 @@
+<header id="home-header" [ngClass]="{'header-fixed': isFixed}">
+  <div class="container" fxLayout="row wrap" fxLayoutAlign="start center">
+    <div class="header-mobile-top" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start center">
+      <div class="home-logo mr-1">
+          <a href="/"><img src="assets/images/logo-utad.png" alt="Egret logo"></a>
+      </div>
+      <button mat-icon-button id="menu-toggle" (click)="toggleMenu()"><mat-icon>menu</mat-icon></button>
+    </div>
+    <div fxFlex class="top-menu">
+      <span fxFlex></span>
+
+      <div class="home-logo mr-1">
+        <a href="/"><img src="assets/images/logo-company.png" alt="Egret logo"></a>
+    </div>
+      <mat-menu #appMenu="matMenu">
+        <ng-template matMenuContent>
+          <button mat-menu-item>English</button>
+          <button mat-menu-item>Spanish</button>
+        </ng-template>
+      </mat-menu>
+      
+      <button mat-icon-button [matMenuTriggerFor]="appMenu">
+        <mat-icon>🌍</mat-icon>
+      </button>
+      
+    </div>
+  </div>
+</header>

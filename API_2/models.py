@@ -10,7 +10,7 @@ class User(db.Model):
     email = Column(String(50), nullable=False, unique=True)
     hash_password = Column(String(128))
     isActive = Column(Boolean, default=False)
-    isAlumn = Column(Boolean, default=False)
+    isAlumn = Column(String(10))
 
 # Crear tabla de tokens
 class Token(db.Model):

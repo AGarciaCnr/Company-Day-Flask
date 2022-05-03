@@ -1,0 +1,137 @@
+<div class="div-principal">
+  <mat-card>
+    <mat-card-title>Company Registration</mat-card-title>
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Basic Information</ng-template>
+          <div style="left:25%; top:15%">
+            <mat-form-field>
+              <mat-label>Organization Name</mat-label>
+              <input matInput placeholder="organization_name" formControlName="organization_name" required>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Contact phone number</mat-label>
+              <input matInput placeholder="phone_organization" formControlName="phone_organization" required>
+            </mat-form-field>
+
+            <br />
+
+            <mat-form-field>
+              <mat-label>Contact Person Name</mat-label>
+              <textarea matInput placeholder="contact_organization" formControlName="contact_organization" required>
+              </textarea>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Contact E-Mail</mat-label>
+              <input matInput placeholder="email_organization" formControlName="email_organization"
+                pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required>
+            </mat-form-field>
+          </div>
+          <div style="left:40%; top:90%;">
+            <button mat-flat-button color="accent" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Localisation Information</ng-template>
+          <div style="left:25%; top:15%">
+
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="organization_address" formControlName="organization_address" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input matInput placeholder="organization_city" formControlName="organization_city" required>
+          </mat-form-field>
+
+          <br />
+
+          <mat-form-field>
+            <mat-label>State/Province</mat-label>
+            <input matInput placeholder="organization_state" formControlName="organization_state" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Postal code</mat-label>
+            <input matInput placeholder="organization_postalcode" formControlName="organization_postalcode" required>
+          </mat-form-field>
+
+          <br />
+
+          <mat-form-field>
+            <mat-label>Country</mat-label>
+            <input matInput placeholder="organization_country" formControlName="organization_country" required>
+          </mat-form-field>
+          <br />
+        </div>
+          <div style="left:40%; top:90%;">
+            <button mat-flat-button color="accent" matStepperPrevious>Back</button>
+            <button mat-flat-button color="accent" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Aditionnal Information</ng-template>
+          <div style="left:25%; top:15%">
+
+          <mat-form-field>
+            <mat-label>Company Website</mat-label>
+            <input matInput placeholder="organization_website" formControlName="organization_website" required>
+          </mat-form-field>
+
+          <mat-form-field class="columns">
+            <mat-label *ngIf="selectedFiles; else newFile">{{selectedFiles.item(0).name}}</mat-label>
+            <ng-template #newFile>
+                <mat-label>Company Logo</mat-label>
+            </ng-template>
+            <input matInput disabled>
+            <button mat-icon-button matSuffix (click)="fileInput.click()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+            <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
+        </mat-form-field>
+
+
+        <br />
+        The company is currently looking for candidates
+        <mat-form-field>
+          <mat-select matInput formControlName="organization_looking" required>
+              <mat-option value="true">Yes</mat-option>
+              <mat-option value="false">No</mat-option>
+          </mat-select>
+      </mat-form-field>
+      <br/>
+      I consent to the use of the company name and logo for the promotional material of this event
+      <mat-form-field>
+        <input hidden=true matInput> 
+        <mat-checkbox formControlName="organization_validate" required>Active</mat-checkbox>
+    </mat-form-field>
+
+        </div>
+          <div style="left:40%; top:90%;">
+            <button mat-flat-button color="accent" matStepperPrevious>Back</button>
+            <button mat-flat-button color="accent" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div style="left:40%; top:90%;">
+          <button mat-flat-button color="accent" matStepperPrevious>Back</button>
+          <button mat-flat-button color="accent" (click)="stepper.reset()">Reset</button>
+          <button mat-flat-button color="accent" (click)="submit()">Submit</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-card>
+</div>
