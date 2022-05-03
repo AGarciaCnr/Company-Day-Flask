@@ -3,6 +3,8 @@ import { Component, OnInit, OnDestroy,ElementRef } from '@angular/core';
 @Component({
   selector: 'app-userP',
   template: `<div class="landing">
+  <app-header></app-header>
+  <app-userpage></app-userpage>
   </div>`
 })
 

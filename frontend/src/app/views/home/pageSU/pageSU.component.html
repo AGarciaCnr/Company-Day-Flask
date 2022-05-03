@@ -59,6 +59,13 @@
           </mat-error>
         </mat-form-field>
         <br />
+        are you an admin ? :
+        <mat-form-field  style="left:19%;">
+          <input matInput [hidden]="true" [(ngModel)]="myModel" name="myModel">
+          <mat-checkbox class="ml-3" [(ngModel)]="checkbox_admin" name="myModel"></mat-checkbox>
+         </mat-form-field>
+
+        <br/>
 
         <button style="left:35%;" mat-raised-button color="primary" [disabled]="!signupForm.form.valid">Login</button>
       </form>

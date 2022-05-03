@@ -19,6 +19,9 @@ import { HomeOneComponent } from './landing.component';
 import { SignUpStudent } from './signupstudent.component';
 import { SignUp } from './signup.component';
 
+import { userpage } from './userpage.component';
+
+
 import { HeaderComponent } from './header/header.component';
 import { PresentationComponent } from './presentation/presentation.component';
 import { MissionComponent } from './mission/mission.component';
@@ -65,6 +68,7 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
     HomeOneComponent,
     SignUpStudent,
     SignUp,
+    userpage,
     SUSComponent,
     SUComponent,
     HeaderComponent, 

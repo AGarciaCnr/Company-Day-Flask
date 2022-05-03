@@ -1,3 +1,9 @@
 <div class="div-principal">
-hello
+    <div *ngIf="isShown" class="row container-fluid"  id="divshow" >
+        Admin
+    </div>
+    <div *ngIf="!isShown" class="row container-fluid"  id="divshow" >
+        Non Admin
+    </div>
+    <button mat-raised-button mat-lg-button color="accent" (click)="logout()">SIGN UP EMPRESA</button>
 </div>
