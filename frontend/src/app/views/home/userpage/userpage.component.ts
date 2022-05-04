@@ -29,7 +29,7 @@ export class UserPageComponent implements OnInit {
       this.isShown = true;
 
 
-      this.http.get<any>("http://127.0.0.1:5000/API_2/admin/?jwt=" + this.token).subscribe(
+      this.http.get<any>("http://thibaultcastille.pythonanywhere.com/API_2/admin/?jwt=" + this.token).subscribe(
         (res) => {
           this.data = res.data;
         },
@@ -67,7 +67,7 @@ export class UserPageComponent implements OnInit {
       requestHeaders.set('Content-Type', 'application/json');
   
   
-      this.http.post<any>("http://127.0.0.1:5000/API_2/admin/delete", formData).subscribe(
+      this.http.post<any>("http://thibaultcastille.pythonanywhere.com/API_2/admin/delete", formData).subscribe(
         (res) => {
         },
         (err) => console.log(err)
@@ -80,7 +80,7 @@ export class UserPageComponent implements OnInit {
     requestHeaders.set('Content-Type', 'application/json');
 
 
-    this.http.post<any>("http://127.0.0.1:5000/API_2/admin/update", formData1).subscribe(
+    this.http.post<any>("http://thibaultcastille.pythonanywhere.com/API_2/admin/update", formData1).subscribe(
       (res) => {
         if(res["status"] == "OK") {
           window.location.reload();

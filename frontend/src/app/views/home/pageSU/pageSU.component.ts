@@ -5,7 +5,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { from } from 'rxjs';
 
 
-const baseUrl = 'http://localhost:8080/api/tutorials';
 @Injectable({
   providedIn: 'root'
 })
@@ -49,7 +48,7 @@ export class SUComponent implements OnInit {
     requestHeaders.set('Content-Type', 'application/json');
 
 
-    this.http.post<any>("http://127.0.0.1:5000/API_2/login/", formData).subscribe(
+    this.http.post<any>("http://thibaultcastille.pythonanywhere.com/API_2/login/", formData).subscribe(
       (res) => {
         if(res['status'] == "ERROR") {
           console.log(res['message']);
@@ -86,7 +85,7 @@ export class SUComponent implements OnInit {
       const requestHeaders: HeadersInit = new Headers();
       requestHeaders.set('Content-Type', 'application/json');
 
-      this.http.post<any>("http://127.0.0.1:5000/API_2/uRegister/", formData).subscribe(
+      this.http.post<any>("http://thibaultcastille.pythonanywhere.com/API_2/uRegister/", formData).subscribe(
         (res) => {
           if(res['status'] == "ERROR") {
             console.log(res['message']);
@@ -101,18 +100,6 @@ export class SUComponent implements OnInit {
         (err) => console.log(err)
       );
   
-/*      var result = from( // wrap the fetch in a from if you need an rxjs Observable
-        fetch(
-          "http://127.0.0.1:5000/API_2/uRegister/",
-          {
-            body: formData,
-            headers: requestHeaders,
-            method: 'POST',
-            mode: 'no-cors'
-          }
-        )
-      );
-    } */
   }
   }
   

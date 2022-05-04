@@ -7,8 +7,6 @@ import { map} from 'rxjs/operators';
 import 'rxjs/Rx';
 import { HttpClient } from '@angular/common/http';
 
-const baseUrl = 'http://localhost:8080/api/tutorials';
-
 @Component({
   selector: 'app-sus',
   templateUrl: './pageSUS.component.html',
