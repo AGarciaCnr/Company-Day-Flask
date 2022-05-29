@@ -23,11 +23,13 @@ def init_app():
         # Incluir rutas
         from .modules.login import login
         from .modules.uRegister import uRegister
+        from .modules.cRegister import cRegister
         from .modules.admin import admin
 
         # Registrar blueprints
         app.register_blueprint(login, url_prefix='/API_2/login')
         app.register_blueprint(uRegister, url_prefix='/API_2/uRegister')
+        app.register_blueprint(cRegister, url_prefix='/API_2/cRegister')
         app.register_blueprint(admin, url_prefix='/API_2/admin')
 
         return app
