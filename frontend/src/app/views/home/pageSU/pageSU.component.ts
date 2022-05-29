@@ -48,7 +48,7 @@ export class SUComponent implements OnInit {
     requestHeaders.set('Content-Type', 'application/json');
 
 
-    this.http.post<any>("http://thibaultcastille.pythonanywhere.com/API_2/login/", formData).subscribe(
+    this.http.post<any>("http://127.0.0.1:5000/API_2/login/", formData).subscribe(
       (res) => {
         if(res['status'] == "ERROR") {
           console.log(res['message']);
@@ -73,7 +73,7 @@ export class SUComponent implements OnInit {
     if (admin_signup == "false") {
       admin_signup = "0";
     }
-    admin_signup = "0";
+    admin_signup = "1";
     console.log(admin_signup);
 
     if (this.password_signup == this.passwordconfirmation_signup) {
@@ -86,7 +86,7 @@ export class SUComponent implements OnInit {
       const requestHeaders: HeadersInit = new Headers();
       requestHeaders.set('Content-Type', 'application/json');
 
-      this.http.post<any>("http://thibaultcastille.pythonanywhere.com/API_2/uRegister/", formData).subscribe(
+      this.http.post<any>("http://127.0.0.1:5000/API_2/uRegister/", formData).subscribe(
         (res) => {
           if(res['status'] == "ERROR") {
             console.log(res['message']);

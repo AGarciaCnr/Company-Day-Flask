@@ -25,7 +25,63 @@
            </table>
     </div>
     <div *ngIf="!isShown" class="row container-fluid"  id="divshow" >
-        Non Admin
-    </div>
+      <section id="portfolio-section" class="portfolio-section home-section" [ngClass]="{'light-gray': backgroundGray}">
+        <div class="container">
+          <div class="section-header">
+            <br/>
+            <h2>Eventos Actuales</h2>
+            <mat-form-field appearance="fill">
+              <mat-label>Select a type of Event</mat-label>
+              <mat-select [(value)]="selected" (selectionChange)="getEvent($event.value)">
+                <mat-option value="All">All</mat-option>
+                <mat-option value="Company Fair">Company Fair</mat-option>
+                <mat-option value="Student pitches">Student pitches</mat-option>
+                <mat-option value="Speed Meetings">Speed Meetings</mat-option>
+                <mat-option value="Company Talks">Company Talks</mat-option>
+              </mat-select>
+            </mat-form-field>
+            &nbsp;&nbsp;
+            <mat-form-field appearance="fill">
+              <mat-label>Select your Grade</mat-label>
+              <mat-select [(value)]="selectedGrade" (selectionChange)="getEventGrade($event.value)">
+                <mat-option value="All">See for all grades</mat-option>
+                <mat-option value="Ingeniería del Software">Ingeniería del Software</mat-option>
+                <mat-option value="Animación">Animación</mat-option>
+                <mat-option value="Diseño Digital">Diseño Digital</mat-option>
+                <mat-option value="Matemáticas">Matemáticas</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        <ngu-carousel
+        #portfolioCarousel
+        class="carousel"
+        [inputs]="carouselOptions" [dataSource]="portfolios">
+          <ngu-item NguCarouselItem *nguCarouselDef="let p; let j = index">
+              <mat-card class="p-0">
+                <h5 style="font-size: 150%; text-align: center;"><strong><a href="">{{p.type[0]}}</a></strong></h5>
+                <br/>
+                  <img mat-card-image height="150" width="700" [src]="p.photo">
+                  <mat-card-content>
+                    <h5 style=" text-align: center;"><strong><a href="">{{p.grade[0]}}</a></strong></h5>
+                    <p>
+                      {{p.text}}
+                    </p>
+                    <h5 style=" text-align: center;"><strong><a href="">{{p.where}}</a></strong></h5>
+                    <h5 style=" text-align: center;"><strong><a href="">{{p.date}}</a></strong></h5>
+                    <mat-divider class="mb-1"></mat-divider>
+                    <button style=" text-align: center;"  mat-raised-button color="primary">Info</button>
+                  </mat-card-content>
+                </mat-card>
+          </ngu-item>
+          
+          <button mat-fab NguCarouselPrev class='carousel-left'><mat-icon>keyboard_arrow_left</mat-icon></button>
+          <button mat-fab NguCarouselNext class='carousel-right'><mat-icon>keyboard_arrow_right</mat-icon></button>
+    
+          <ul NguCarouselPoint class="carousel-point">
+            <li *ngFor="let pointNumber of portfolioCarousel.pointNumbers; let j = index" [class.active]="j==portfolioCarousel.activePoint" (click)="portfolioCarousel.moveTo(j)"></li>
+          </ul>
+      </ngu-carousel>
+        </div>
+    </section>    </div>
      
 </div>
