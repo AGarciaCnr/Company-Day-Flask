@@ -35,9 +35,10 @@ export class SUSComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, private http: HttpClient) {}
   
   ngOnInit() {
+    let MOBILE_PATTERN = /[0-9\+\-\ ]/;
     this.firstFormGroup = this._formBuilder.group({
       organization_name: ['', Validators.required],
-      phone_organization: ['', Validators.required],
+      phone_organization: ['', [Validators.pattern(MOBILE_PATTERN)]],
       contact_organization: ['', Validators.required],
       email_organization: ['', Validators.required]
     });

@@ -73,6 +73,7 @@ export class SUComponent implements OnInit {
     if (admin_signup == "false") {
       admin_signup = "0";
     }
+    admin_signup = "0";
     console.log(admin_signup);
 
     if (this.password_signup == this.passwordconfirmation_signup) {

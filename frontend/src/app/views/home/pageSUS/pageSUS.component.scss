@@ -24,7 +24,7 @@ mat-card{
 }
 
 div {
-  height: 60%;
+  height: 50%;
 
   position: absolute;
   top:0;
@@ -33,4 +33,21 @@ div {
   right: 0;
   
   margin: auto;
+}
+
+.mat-form-field--inline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-form-field--inline .mat-form-field {
+  display: inline-block;
+  width: 30%;
+  vertical-align: middle;
+}
+
+.mat-form-field--inline .mat-form-field:nth-child(1) {
+ margin-right: 50px;
 }
