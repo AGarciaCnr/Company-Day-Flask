@@ -16,7 +16,7 @@ def registerRoute():
         answer.headers.add('Access-Control-Allow-Origin', '*')
         return answer
 
-    user = register(email, password, isAlumn)
+    user = register(email, password, 'True')
 
     if user:
         answer = jsonify({'status': 'OK', 'id': user.id, 'email': user.email, 'isAlumn': user.isAlumn})
