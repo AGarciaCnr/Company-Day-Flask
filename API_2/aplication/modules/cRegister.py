@@ -2,7 +2,7 @@ import email
 from hashlib import new
 from flask import Blueprint, request, jsonify
 from models import db, Company, User, Token
-from security import sendCompanyEmailConfirmation, generateRandomToken, generateRandomPassword
+from security import sendCompanyEmailConfirmation, generateRandomToken, generateRandomPassword, hashPassword
 
 cRegister = Blueprint('cRegister', __name__)
 
@@ -87,7 +87,7 @@ website, lookingForCandidates):
             newPassword = generateRandomPassword()
             user = User(
                 email = contactEmail,
-                password = newPassword,
+                hash_password = hashPassword(newPassword),
                 isAlumn = 'False'
             )
             db.session.add(user)

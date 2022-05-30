@@ -16,7 +16,7 @@ def generateRandomToken():
     return ''.join(random.choice(string.ascii_letters + string.digits) for i in range(128))
 
 def generateRandomPassword():
-    return ''.join(random.choice(string.ascii_letters + string.digits) for i in range(16))
+    return ''.join(random.choice(string.ascii_letters + string.digits) for i in range(12))
 
 def sendEmailConfirmation(email, token):
     msg = Message('Confirmación de cuenta de Company Day', sender=current_app.config['MAIL_USERNAME'], recipients=[email])
