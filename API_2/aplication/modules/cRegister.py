@@ -96,7 +96,7 @@ website, lookingForCandidates):
             token = generateRandomToken()
             newToken = Token(
                 token = token,
-                user = user
+                user_id = user.id
             )
             db.session.add(newToken)
             db.session.commit()
