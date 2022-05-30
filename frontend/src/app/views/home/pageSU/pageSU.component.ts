@@ -57,6 +57,7 @@ export class SUComponent implements OnInit {
           this.token = res['access_token'];
           localStorage.setItem('User', JSON.stringify(res));
           localStorage.setItem('Token', this.token);
+          localStorage.setItem('Type', "Alumnos");
           this.router.navigateByUrl('/home/UserPage');
         }
         

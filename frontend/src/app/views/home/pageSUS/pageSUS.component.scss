@@ -51,3 +51,13 @@ div {
 .mat-form-field--inline .mat-form-field:nth-child(1) {
  margin-right: 50px;
 }
+
+:host ::ng-deep .mat-tab-body-wrapper {
+  height: 600px;
+
+}
+
+:host ::ng-deep .mat-tab-body.mat-tab-body-active {
+  height: 600px;
+
+}

@@ -1,9 +1,9 @@
-import { Component, OnInit,Injectable } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConnectableObservable } from "rxjs"
 import { publish } from "rxjs/operators";
-import { map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import 'rxjs/Rx';
 import { HttpClient } from '@angular/common/http';
 
@@ -18,12 +18,15 @@ import { HttpClient } from '@angular/common/http';
 export class SUSComponent implements OnInit {
 
   title = 'newMat';
-     
+
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   selectedFiles;
+  password: string;
+  email: string;
+  token: string;
 
   choiceSelected: string;
   choice: string[] = ['yes', 'no'];
@@ -32,8 +35,12 @@ export class SUSComponent implements OnInit {
     this.selectedFiles = event.target.files;
     console.log(event.target.files);
   }
-  constructor(private _formBuilder: FormBuilder, private http: HttpClient) {}
-  
+  constructor(private _formBuilder: FormBuilder, private http: HttpClient, private router: Router) { 
+    if (localStorage.getItem("User") !== null) {
+      this.router.navigateByUrl('/home/EmpresaPage');
+    }
+  }
+
   ngOnInit() {
     let MOBILE_PATTERN = /[0-9\+\-\ ]/;
     this.firstFormGroup = this._formBuilder.group({
@@ -55,18 +62,69 @@ export class SUSComponent implements OnInit {
       organization_validate: ['', Validators.required]
     });
   }
-  
-  submit(){
-      console.log(this.firstFormGroup.value);
-      console.log(this.secondFormGroup.value);
-      console.log(this.thirdFormGroup.value);
-      const formData = new FormData()
-/*        formData.append('username', 'Chris');
-  //      return this.http.post(baseUrl, this.thirdFormGroup);
-      var observable = this.http.post(baseUrl, formData)
-      .map(response => response.json()) // in case you care about returned json       
-      .publishReplay(); // would be .publish().replay() in RxJS < v5 I guess
-      observable.connect();
-    return observable; */
+  login() {
+    var formData = new FormData();
+    formData.append('email', this.email);
+    formData.append('password', this.password);
+    const requestHeaders: HeadersInit = new Headers();
+    requestHeaders.set('Content-Type', 'application/json');
+
+
+    this.http.post<any>("http://127.0.0.1:5000/API_2/login/", formData).subscribe(
+      (res) => {
+        if(res['status'] == "ERROR") {
+          console.log(res['message']);
+        } else {
+          console.log(res['isAlumn'])
+          this.token = res['access_token'];
+          localStorage.setItem('User', JSON.stringify(res));
+          localStorage.setItem('Token', this.token);
+          localStorage.setItem('Type', "Empresa");
+          this.router.navigateByUrl('/home/EmpresaPage');
+        }
+        
+
+      },
+      (err) => console.log(err)
+    );
   }
+
+  submit() {
+    console.log(this.firstFormGroup.value.organization_name);
+    console.log(this.secondFormGroup.value.organization_city);
+    console.log(this.thirdFormGroup.value.organization_website);
+    
+    var formData = new FormData();
+
+    formData.append('name', this.firstFormGroup.value.organization_name);
+    formData.append('contactPersonName', this.firstFormGroup.value.contact_organization);
+    formData.append('contactPhone', this.firstFormGroup.value.phone_organization);
+    formData.append('contactEmail', this.firstFormGroup.value.email_organization);
+    formData.append('address', this.secondFormGroup.value.organization_address);
+    formData.append('city', this.secondFormGroup.value.organization_city);
+    formData.append('province', this.secondFormGroup.value.organization_state);
+    formData.append('postalCode', this.secondFormGroup.value.organization_postalcode);
+    formData.append('country', this.secondFormGroup.value.organization_country);
+    formData.append('website', this.thirdFormGroup.value.organization_website);
+    formData.append('lookingForCandidates', this.thirdFormGroup.value.organization_looking);
+
+
+    const requestHeaders: HeadersInit = new Headers();
+    requestHeaders.set('Content-Type', 'application/json');
+
+    this.http.post<any>("http://127.0.0.1:5000/API_2/cRegister/", formData).subscribe(
+      (res) => {
+        if (res['status'] == "ERROR") {
+          console.log(res['message']);
+        } else {
+          console.log(res)
+          //            localStorage.setItem('User', JSON.stringify(res));
+          //           this.router.navigateByUrl('/home/UserPage');
+        }
+
+
+      },
+      (err) => console.log(err)
+    );
+  } 
 }

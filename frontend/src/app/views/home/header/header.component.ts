@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   isConnected: boolean = false ;
+  type_user: string;
 
   isFixed;
   constructor(
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) {
     if (localStorage.getItem("User") !== null) {
+      this.type_user = localStorage.getItem("Type");
       this.isConnected = true;
     }
    }
@@ -45,6 +47,7 @@ export class HeaderComponent implements OnInit {
   }
   logout() {
     localStorage.removeItem("User");
+    localStorage.removeItem("Type");
     this.isConnected = false;
     this.router.navigateByUrl('/home/LandingPage');
   }

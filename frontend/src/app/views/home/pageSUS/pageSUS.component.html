@@ -1,154 +1,182 @@
 <div class="div-principal">
   <mat-card>
-    <mat-card-title>Company Registration</mat-card-title>
-    <mat-horizontal-stepper [linear]="isLinear" #stepper>
-      <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
-          <ng-template matStepLabel>Basic Information</ng-template>
-          <div style="top:15%">
+      <mat-tab-group dynamicHeight mat-align-tabs="center" >
+        <mat-tab label="Register">
+          <mat-card-title style=" text-align: center;">Company Registration</mat-card-title>
+          <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+              <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Basic Information</ng-template>
+                <div style="top:15%">
+                  <li class="mat-form-field--inline">
+                    <mat-form-field>
+                      <mat-label>Organization Name</mat-label>
+                      <input matInput placeholder="Organization Name" formControlName="organization_name" required>
+                    </mat-form-field>
+      
+                    <mat-form-field>
+                      <mat-label>Contact phone number</mat-label>
+                      <input matInput placeholder="Contact phone number" formControlName="phone_organization" required>
+                    </mat-form-field>
+                  </li>
+                  <br />
+                  <li class="mat-form-field--inline">
+      
+                    <mat-form-field>
+                      <mat-label>Contact Person Name</mat-label>
+                      <input matInput placeholder="Contact person name" formControlName="contact_organization" required>
+                    </mat-form-field>
+      
+                    <mat-form-field>
+                      <mat-label>Contact E-Mail</mat-label>
+                      <input matInput placeholder="Contact Email" formControlName="email_organization"
+                        pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required>
+                    </mat-form-field>
+                  </li>
+                </div>
+                <div style="left:40%; top:90%;">
+                  <button mat-flat-button color="accent" matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+              <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Localisation Information</ng-template>
+                <div style="top:15%">
+                  <li class="mat-form-field--inline">
+      
+                    <mat-form-field>
+                      <mat-label>Address</mat-label>
+                      <input matInput placeholder="Address" formControlName="organization_address" required>
+                    </mat-form-field>
+      
+                    <mat-form-field>
+                      <mat-label>City</mat-label>
+                      <input matInput placeholder="City" formControlName="organization_city" required>
+                    </mat-form-field>
+                  </li>
+                  <br />
+                  <li class="mat-form-field--inline">
+                    <mat-form-field>
+                      <mat-label>State/Province</mat-label>
+                      <input matInput placeholder="State/Province" formControlName="organization_state" required>
+                    </mat-form-field>
+      
+                    <mat-form-field>
+                      <mat-label>Postal code</mat-label>
+                      <input matInput placeholder="Postal code" formControlName="organization_postalcode" required>
+                    </mat-form-field>
+                  </li>
+      
+                  <br />
+                  <li class="mat-form-field--inline">
+      
+                    <mat-form-field>
+                      <mat-label>Country</mat-label>
+                      <input matInput placeholder="Country" formControlName="organization_country" required>
+                    </mat-form-field>
+                  </li>
+                  <br />
+                </div>
+                <div style="left:40%; top:90%;">
+                  <button mat-flat-button color="accent" matStepperPrevious>Back</button>
+                  &nbsp;
+                  <button mat-flat-button color="accent" matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+      
+            <mat-step [stepControl]="thirdFormGroup">
+              <form [formGroup]="thirdFormGroup">
+                <ng-template matStepLabel>Aditionnal Information</ng-template>
+                <div style="top:7%">
+                  <li class="mat-form-field--inline">
+                    <p style = "display:inline; position:relative;right:105px;"> Enter the Website URL : </p>
+                    <mat-form-field>
+                      <mat-label>Company Website</mat-label>
+                      <input matInput placeholder="Company Website URL" formControlName="organization_website" required>
+                    </mat-form-field>
+                  </li>
+                  <li class="mat-form-field--inline">
+                    <p style = "display:inline; position:relative;right:95px;"> Enter the Company Logo : </p>
+                    <mat-form-field class="columns">
+                      <mat-label *ngIf="selectedFiles; else newFile">{{selectedFiles.item(0).name}}</mat-label>
+                      <ng-template #newFile>
+                        <mat-label>Company Logo</mat-label>
+                      </ng-template>
+                      <input matInput disabled>
+                      <button mat-icon-button matSuffix (click)="fileInput.click()">
+                        <mat-icon>attach_file</mat-icon>
+                      </button>
+                      <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
+                    </mat-form-field>
+                  </li>
+      
+      
+                  <li class="mat-form-field--inline">
+                    <p style = "display:inline; position:relative;right:25px;"> The company is currently looking for candidates : </p>
+                    <mat-form-field>
+                      <mat-select matInput formControlName="organization_looking" required>
+                        <mat-option value="true">Yes</mat-option>
+                        <mat-option value="false">No</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </li>
+                  <br />
+                  <li class="mat-form-field--inline">
+                    <p style = "display:inline; position:relative;right:10px;"> I consent to the use of the company name and logo for the promotional material of this event : </p>
+                  </li>
+                  <mat-form-field style="left:35%;">
+                    <input hidden=true matInput>
+                    <mat-checkbox formControlName="organization_validate" required>I consent</mat-checkbox>
+                  </mat-form-field>
+                  <br />
+                </div>
+                <div style="left:40%; top:110%;">
+                  <button mat-flat-button color="accent" matStepperPrevious>Back</button>
+                  &nbsp;
+                  <button mat-flat-button color="accent" matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+      
+            <mat-step>
+              <ng-template matStepLabel>Done</ng-template>
+              <p>You are now done.</p>
+              <div style="left:40%; top:90%;">
+                <button mat-flat-button color="accent" matStepperPrevious>Back</button>
+                &nbsp;
+                <button mat-flat-button color="accent" (click)="stepper.reset()">Reset</button>
+                &nbsp;
+                <button mat-flat-button color="accent" (click)="submit()">Submit</button>
+              </div>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </mat-tab>
+        <mat-tab  label="Login">
+
+          <form #loginForm="ngForm" (ngSubmit)="login()">
+            <h2 class="align" style=" text-align: center;">Log In</h2>
             <li class="mat-form-field--inline">
-              <mat-form-field>
-                <mat-label>Organization Name</mat-label>
-                <input matInput placeholder="Organization Name" formControlName="organization_name" required>
-              </mat-form-field>
-
-              <mat-form-field>
-                <mat-label>Contact phone number</mat-label>
-                <input matInput placeholder="Contact phone number" formControlName="phone_organization" required>
-              </mat-form-field>
-            </li>
-            <br />
-            <li class="mat-form-field--inline">
-
-              <mat-form-field>
-                <mat-label>Contact Person Name</mat-label>
-                <input matInput placeholder="Contact person name" formControlName="contact_organization" required>
-              </mat-form-field>
-
-              <mat-form-field>
-                <mat-label>Contact E-Mail</mat-label>
-                <input matInput placeholder="Contact Email" formControlName="email_organization"
-                  pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required>
-              </mat-form-field>
-            </li>
-          </div>
-          <div style="left:40%; top:90%;">
-            <button mat-flat-button color="accent" matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Localisation Information</ng-template>
-          <div style="top:15%">
-            <li class="mat-form-field--inline">
-
-              <mat-form-field>
-                <mat-label>Address</mat-label>
-                <input matInput placeholder="Address" formControlName="organization_address" required>
-              </mat-form-field>
-
-              <mat-form-field>
-                <mat-label>City</mat-label>
-                <input matInput placeholder="City" formControlName="organization_city" required>
-              </mat-form-field>
-            </li>
-            <br />
-            <li class="mat-form-field--inline">
-              <mat-form-field>
-                <mat-label>State/Province</mat-label>
-                <input matInput placeholder="State/Province" formControlName="organization_state" required>
-              </mat-form-field>
-
-              <mat-form-field>
-                <mat-label>Postal code</mat-label>
-                <input matInput placeholder="Postal code" formControlName="organization_postalcode" required>
-              </mat-form-field>
-            </li>
-
-            <br />
-            <li class="mat-form-field--inline">
-
-              <mat-form-field>
-                <mat-label>Country</mat-label>
-                <input matInput placeholder="Country" formControlName="organization_country" required>
-              </mat-form-field>
-            </li>
-            <br />
-          </div>
-          <div style="left:40%; top:90%;">
-            <button mat-flat-button color="accent" matStepperPrevious>Back</button>
-            &nbsp;
-            <button mat-flat-button color="accent" matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-
-      <mat-step [stepControl]="thirdFormGroup">
-        <form [formGroup]="thirdFormGroup">
-          <ng-template matStepLabel>Aditionnal Information</ng-template>
-          <div style="top:7%">
-            <li class="mat-form-field--inline">
-              <p style = "display:inline; position:relative;right:105px;"> Enter the Website URL : </p>
-              <mat-form-field>
-                <mat-label>Company Website</mat-label>
-                <input matInput placeholder="Company Website URL" formControlName="organization_website" required>
-              </mat-form-field>
-            </li>
-            <li class="mat-form-field--inline">
-              <p style = "display:inline; position:relative;right:95px;"> Enter the Company Logo : </p>
-              <mat-form-field class="columns">
-                <mat-label *ngIf="selectedFiles; else newFile">{{selectedFiles.item(0).name}}</mat-label>
-                <ng-template #newFile>
-                  <mat-label>Company Logo</mat-label>
-                </ng-template>
-                <input matInput disabled>
-                <button mat-icon-button matSuffix (click)="fileInput.click()">
-                  <mat-icon>attach_file</mat-icon>
-                </button>
-                <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
-              </mat-form-field>
-            </li>
-
-
-            <li class="mat-form-field--inline">
-              <p style = "display:inline; position:relative;right:25px;"> The company is currently looking for candidates : </p>
-              <mat-form-field>
-                <mat-select matInput formControlName="organization_looking" required>
-                  <mat-option value="true">Yes</mat-option>
-                  <mat-option value="false">No</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </li>
-            <br />
-            <li class="mat-form-field--inline">
-              <p style = "display:inline; position:relative;right:10px;"> I consent to the use of the company name and logo for the promotional material of this event : </p>
-            </li>
-            <mat-form-field style="left:35%;">
-              <input hidden=true matInput>
-              <mat-checkbox formControlName="organization_validate" required>I consent</mat-checkbox>
+              <mat-form-field >
+              <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
             </mat-form-field>
-            <br />
-          </div>
-          <div style="left:40%; top:110%;">
-            <button mat-flat-button color="accent" matStepperPrevious>Back</button>
-            &nbsp;
-            <button mat-flat-button color="accent" matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
+            <mat-form-field >
+              <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+              <mat-error>
+                Please provide a valid password
+              </mat-error>
+            </mat-form-field>
+          </li>
+          <br />
+          <button style="left:45%;"  mat-raised-button color="primary"
+              [disabled]="!loginForm.form.valid">Login</button>
+          </form>
 
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
-        <div style="left:40%; top:90%;">
-          <button mat-flat-button color="accent" matStepperPrevious>Back</button>
-          &nbsp;
-          <button mat-flat-button color="accent" (click)="stepper.reset()">Reset</button>
-          &nbsp;
-          <button mat-flat-button color="accent" (click)="submit()">Submit</button>
-        </div>
-      </mat-step>
-    </mat-horizontal-stepper>
+
+        </mat-tab>
+      </mat-tab-group>
+  
+
   </mat-card>
 </div>

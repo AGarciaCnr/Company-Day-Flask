@@ -20,6 +20,7 @@ import { SignUpStudent } from './signupstudent.component';
 import { SignUp } from './signup.component';
 
 import { userpage } from './userpage.component';
+import { empresapage } from './empresapage.component';
 
 
 import { HeaderComponent } from './header/header.component';
@@ -32,6 +33,7 @@ import { ActivitiesComponent } from './activities/activities.component';
 
 
 import { UserPageComponent } from './userpage/userpage.component';
+import { EmpresaPageComponent } from './empresapage/empresapage.component';
 
 import { SUSComponent } from './pageSUS/pageSUS.component'
 import { SUComponent } from './pageSU/pageSU.component'
@@ -69,6 +71,7 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
     SignUpStudent,
     SignUp,
     userpage,
+    empresapage,
     SUSComponent,
     SUComponent,
     HeaderComponent, 
@@ -79,6 +82,7 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
     FooterComponent, 
     ActivitiesComponent, 
     UserPageComponent,
+    EmpresaPageComponent
   ],
   providers: [WINDOW_PROVIDERS]
 

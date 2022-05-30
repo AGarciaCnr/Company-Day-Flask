@@ -3,10 +3,12 @@
     <h2 >Registration</h2>
 <div fxLayout="row" fxLayout.lt-md="column" fxLayoutWrap="nowrap" fxLayoutGap="20px">
   <div fxFlex="50" fxLayoutAlign="center center">
-    <a routerLink="/home/SignUpEmpresas"><button mat-raised-button mat-lg-button color="accent" (click)="signUpEmpresa()">SIGN UP EMPRESA</button></a>
+<!--    <a routerLink="/home/EmpresaPage"><button mat-raised-button mat-lg-button color="accent" (click)="signUpEmpresa()">SIGN UP EMPRESA</button></a>-->
+<!--  [disabled]= -->
+   <a routerLink="/home/SignUpEmpresas"><button  disabled="{{buttonDisabled_alumnos}}" mat-raised-button mat-lg-button color="accent" (click)="signUpEmpresa()">SIGN UP EMPRESA</button></a>
   </div>
   <div fxFlex="50" fxLayoutAlign="center center">
-    <a routerLink="/home/SignUp"><button mat-raised-button mat-lg-button color="accent">SIGN UP STUDENT</button></a>
+    <a routerLink="/home/SignUp"><button disabled="{{buttonDisabled_empresa}}" mat-raised-button mat-lg-button color="accent">SIGN UP STUDENT</button></a>
       </div>
     </div>
   </div>

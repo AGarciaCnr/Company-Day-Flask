@@ -5,7 +5,8 @@
           <a href="/"><img src="assets/images/logo-utad.png" alt="Egret logo"></a>
       </div>
     <div *ngIf="isConnected" fxFlex class="top-menu">
-      <button mat-button id="dashboard-topbtn" class="hometop-btn" [routerLink]="'/home/UserPage'"><strong>User Page</strong></button>
+      <button *ngIf="this.type_user == 'Alumnos'"  mat-button id="dashboard-topbtn" class="hometop-btn" [routerLink]="'/home/UserPage'"><strong>User Page</strong></button>
+      <button *ngIf="this.type_user == 'Empresa'"  mat-button id="dashboard-topbtn" class="hometop-btn" [routerLink]="'/home/EmpresaPage'"><strong>Empresa Page</strong></button>
     </div>
 
       <button mat-icon-button id="menu-toggle" (click)="toggleMenu()"><mat-icon>menu</mat-icon></button>

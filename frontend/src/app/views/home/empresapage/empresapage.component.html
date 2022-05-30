@@ -1,0 +1,149 @@
+<div>
+   <mat-grid-list cols="2" rowHeight="3:1">
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-title style=" text-align: center;">Company Information</mat-card-title>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Leave information about the company</mat-label>
+          <textarea matInput placeholder="Ex. U-TAD is a school ..."></textarea>
+        </mat-form-field>
+        <mat-card-actions align="end">
+          <button style=" text-align: center;"  mat-raised-button color="primary">Save</button>
+        </mat-card-actions>
+      </mat-card>
+    
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-title style=" text-align: center;">Eventos Actuales</mat-card-title>
+        <mat-list>
+          <mat-list-item>
+            Speed Meetings - Video Juegos <br/>                         <button style=" left:450px;"  mat-raised-button color="primary">Manage</button>
+
+            23/06/2022
+
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            Company Talks - Animacion <br/>                         <button style=" left:475px;"  mat-raised-button color="primary">Manage</button>
+
+            05/06/2022
+
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            Company Fair - Matematicas <br/>                         <button style=" left:470px;"  mat-raised-button color="primary">Manage</button>
+
+            12/06/2022
+
+          </mat-list-item>
+        </mat-list>
+        
+      </mat-card>
+    
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-card>
+    <mat-card-title style=" text-align: center;">Create New Event</mat-card-title>
+    <h4>Type of event</h4>
+    <mat-grid-list cols="3" rowHeight="100px" [gutterSize]="'10px'">
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Select the type of Event</mat-label>
+          <mat-select [(ngModel)]="selected" (selectionChange)="getEvent($event.value)">
+            <mat-option value="Company Fair">Company Fair</mat-option>
+            <mat-option value="Student pitches">Student pitches</mat-option>
+            <mat-option value="Speed Meetings">Speed Meetings</mat-option>
+            <mat-option value="Company Talks">Company Talks</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Date and Hours of the Event</mat-label>
+          <input matInput placeholder="Ex. 28/06/2023 - 13h00" value="">
+        </mat-form-field>
+
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Select where is the Event</mat-label>
+          <mat-select [(ngModel)]="where">
+            <mat-option value="Online">Online</mat-option>
+            <mat-option value="On Campus">On Campus</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <span *ngIf="selected == 'Student pitches'" class="example-list-section">
+          <mat-checkbox 
+                        class="example-margin"
+                        [checked]="allComplete"
+                        [color]="task.color"
+                        [indeterminate]="someComplete()"
+                        (change)="setAll($event.checked)">
+            {{task.name}}
+          </mat-checkbox>
+        </span>
+        <span *ngIf="selected == 'Student pitches'" class="example-list-section">
+          <ul>
+            <li *ngFor="let subtask of task.subtasks">
+              <mat-checkbox [(ngModel)]="subtask.completed"
+                            [color]="subtask.color"
+                            (ngModelChange)="updateAllComplete()">
+                {{subtask.name}}
+              </mat-checkbox>
+            </li>
+          </ul>
+        </span>
+        <mat-form-field *ngIf="selected == 'Speed Meetings'"  appearance="fill">
+          <mat-label>Select the type of Event</mat-label>
+          <mat-select >
+            <mat-option value="10">10 min</mat-option>
+            <mat-option value="15">15 min</mat-option>
+            <mat-option value="20">20 min</mat-option>
+            <mat-option value="25">25 min</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <p *ngIf="selected == 'Company Talks'">  Do a brief description of the talk </p>&nbsp;
+           <mat-form-field *ngIf="selected == 'Company Talks'" class="example-full-width" appearance="fill">
+             <mat-label>Do a brief description of the talk</mat-label>
+             <textarea matInput placeholder="Ex. The talk is about  ..."></textarea>
+           </mat-form-field>
+
+
+      </mat-grid-tile>
+      <mat-grid-tile>
+     <p *ngIf="selected == 'Speed Meetings'">   Please briefly describe the profiles or jobs/internships opportunities you are offering for the speed meetings, If any, please indicate general profiles you need for you company.</p>
+        <mat-form-field *ngIf="selected == 'Speed Meetings'" class="example-full-width" appearance="fill">
+          <mat-label>Describe the profil you want.</mat-label>
+          <textarea matInput placeholder="Ex. I want a developer..."></textarea>
+        </mat-form-field>
+        <mat-form-field *ngIf="selected == 'Company Talks'">
+          <mat-label>Who is the speaker</mat-label>
+          <input matInput placeholder="Ex. The speaker is Marco..." value="">
+        </mat-form-field>
+
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <p *ngIf="selected == 'Speed Meetings'">   Any other question you would like to ask candidates?</p>
+           <mat-form-field *ngIf="selected == 'Speed Meetings'" class="example-full-width" appearance="fill">
+             <mat-label>Question ?</mat-label>
+             <textarea matInput placeholder="Ex. Do you have experience in ..."></textarea>
+           </mat-form-field>
+  
+         </mat-grid-tile>
+       </mat-grid-list>
+
+
+
+
+    <mat-card-actions align="end">
+      <button style=" text-align: center;"  mat-raised-button color="primary">Create</button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>
