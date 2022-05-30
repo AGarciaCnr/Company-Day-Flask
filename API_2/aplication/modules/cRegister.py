@@ -6,7 +6,7 @@ from security import sendCompanyEmailConfirmation, generateRandomToken, generate
 
 cRegister = Blueprint('cRegister', __name__)
 
-cRegister.route('/', methods=['POST'])
+@cRegister.route('/', methods=['POST'])
 def registerRoute():
     name = request.form['name']
     contactPersonName = request.form['contactPersonName']
